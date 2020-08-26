@@ -112,3 +112,11 @@ services:
 ```
 docker-compose up
 ```
+
+##### Once the command has been run this should create 2 seperate containers. one for the app running node and one for the db running mongo.
+
+![](images/1.png)
+![](images/2.png)
+![](images/3.png)
+
+##### We can see all webpages working
