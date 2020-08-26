@@ -34,6 +34,13 @@ Highly maintainable and testable
 
 ### Microservices Docker Nodejs App and db task
 
+##### Pulling relevent images from Dockerhub
+```
+docker pull node
+```
+```
+docker pull mongo
+```
 App Docker file
 
 ```
@@ -70,6 +77,8 @@ CMD ["node","app.js"]
 
 docker-compose file
 
+##### This Docker compose file is used to create the containers and create a link between the app and db. The full code can be seen below. 
+
 ```
 version: "2"
 services:
@@ -98,3 +107,8 @@ services:
   #  command: node seeds/seed.js  
 ```
 
+
+##### Running the Docker compose file
+```
+docker-compose up
+```
