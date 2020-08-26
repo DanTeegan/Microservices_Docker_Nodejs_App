@@ -71,23 +71,30 @@ CMD ["node","app.js"]
 docker-compose file
 
 ```
-version: '3'
-
+version: "2"
 services:
-  db:
+  mongo:
     image: mongo
-    restart: always
-    ports: [27017:27017]
+    container_name: mongo
+ #   restart: always
+    volumes:
+      - ./mongod.conf:/etc/mongod.conf
+      - ./logs:/var/log/mongod/
+      - ./db:/var/lib/mongodb
+      #- ./mongod.service:/lib/systemd/system/mongod.service
+    ports:
+      - "27017:27017"
 
-  web:
+  app:
+    container_name: app
+    restart: always
     build: ./app
-    restart: always
-    ports: [3000:3000]
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
     environment:
-      - DB_HOST=mongodb://db:27017/posts
-    depends_on:
-      - db
-
-
+      - DB_HOST=mongodb://mongo:27017/posts
+  #  command: node seeds/seed.js  
 ```
 
